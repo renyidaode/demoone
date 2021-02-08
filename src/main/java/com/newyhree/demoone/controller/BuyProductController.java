@@ -8,6 +8,7 @@ import com.newyhree.demoone.dataObject.ProductCategory;
 import com.newyhree.demoone.dataObject.ProductInfo;
 import com.newyhree.demoone.service.CategoryService;
 import com.newyhree.demoone.service.ProductService;
+import com.newyhree.demoone.utils.ResultVoUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +32,6 @@ public class BuyProductController {
 
     @GetMapping("/list")
     public ResultVo list(){
-        //配置状态码和信息
-        ResultVo resultVo = new ResultVo();
 
         //商品规格描述
         ProductInfoVo productInfoVos = new ProductInfoVo();
@@ -40,11 +39,11 @@ public class BuyProductController {
         //商品名称
         ProductVo productVos = new ProductVo();
 
-        resultVo.setData(productVos);
+//        resultVo.setData(productVos);
 
         //商品规格描述
         productVos.setProductInfoVoList(Arrays.asList(productInfoVos));
-        resultVo.setData(Arrays.asList(productVos));
+//        resultVo.setData(Arrays.asList(productVos));
 
         //查询所有上架商品
         List<ProductInfo> productInfoList = productService.findUpAll();
@@ -78,12 +77,8 @@ public class BuyProductController {
             productVoList.add(productVo);
         }
 
-
         //配置状态码和信息
-        resultVo.setData(productVoList);
-        resultVo.setCode(0);
-        resultVo.setMsg("成功");
 
-        return  resultVo;
+        return ResultVoUtils.success(productVoList);
     }
 }
