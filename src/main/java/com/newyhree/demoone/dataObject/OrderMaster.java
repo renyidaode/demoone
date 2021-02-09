@@ -8,6 +8,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -15,7 +16,7 @@ import java.util.Date;
 @Data
 //自动更新updateTime
 @DynamicUpdate
-public class OrderMaster {
+public class OrderMaster implements Serializable {
 
     //订单id
     @Id
@@ -25,7 +26,7 @@ public class OrderMaster {
     private String buyerName;
 
     //卖家电话
-    private Integer buyerPhone;
+    private String buyerPhone;
 
     //买家地址
     private String buyerAddress;
@@ -42,10 +43,5 @@ public class OrderMaster {
     //支付状态, 默认0未支付
     private Integer payStatus = PayStatusEnum.WAIT.getCode();
 
-    //创建时间
-    private Date createTime;
-
-    //修改时间
-    private Date updateTime;
 
 }
