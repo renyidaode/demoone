@@ -43,7 +43,7 @@ public class OrderMaster implements Serializable {
     private Integer orderStatus = OrderStatusEnum.NEW.getCode();
 
     //支付状态, 默认0未支付
-    private Integer payStatus = PayStatusEnum.WAIT.getCode();
+    private Integer payStatus = PayStatusEnum.UNPAID.getCode();
 
     //与数据库匹配数据时忽略此数据
 //    @Transient
