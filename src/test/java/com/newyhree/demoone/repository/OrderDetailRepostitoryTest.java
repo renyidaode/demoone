@@ -24,7 +24,6 @@ public class OrderDetailRepostitoryTest {
 
     @Test
     public void findByOrderId() {
-        List<OR>
     }
 
     @Test
