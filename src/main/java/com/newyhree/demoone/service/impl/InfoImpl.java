@@ -70,5 +70,12 @@ public class InfoImpl implements ProductService {
             productInfo.setProductStock(result);
             repository.save(productInfo);
         }
+
+//        for (CartDTO cartDTO:cartDTOList){
+//            ProductInfo productInfo = repository.getOne(cartDTO.getProductId());
+//            Integer result = productInfo.getProductStock() - cartDTO.getProductQuantity();
+//            productInfo.setProductStock(result);
+//            repository.save(productInfo);
+//        }
     }
 }

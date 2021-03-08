@@ -8,9 +8,11 @@ import com.newyhree.demoone.dto.OrderDTO;
 import com.newyhree.demoone.enums.ResultEnum;
 import com.newyhree.demoone.exception.SellException;
 import com.newyhree.demoone.form.OrderForm;
+import com.newyhree.demoone.service.BuyerService;
 import com.newyhree.demoone.service.OrderService;
 import com.newyhree.demoone.utils.ResultVoUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,6 +33,9 @@ public class BuyOrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private BuyerService buyerService;
 
     //创建订单
     @PostMapping("/create")
@@ -70,6 +75,19 @@ public class BuyOrderController {
     }
 
     //订单详情
+    @GetMapping("/detail")
+    public ResultVo<OrderDTO> detail(String buyerOpenid, String orderId) throws SellException {
 
-    //修改订单
+        OrderDTO orderDTO = buyerService.findOrderOne(buyerOpenid, orderId);
+        return ResultVoUtils.success(orderDTO);
+    }
+
+
+
+    //取消订单
+    @PostMapping("/cancel")
+    public ResultVo cancel(String buyerOpenid, String orderId) throws SellException {
+        buyerService.cancelOrder(buyerOpenid, orderId);
+        return ResultVoUtils.success();
+    }
 }
