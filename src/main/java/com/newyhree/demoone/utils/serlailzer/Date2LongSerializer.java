@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Date2LongSerializer extends JsonSerializer<Date>{
 
-
+    //展示json格式时间除以000
     @Override
     public void serialize(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeNumber(date.getTime() / 1000);

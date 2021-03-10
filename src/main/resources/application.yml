@@ -20,3 +20,8 @@ server:
 wechat:
   mpAppId: wx795cc0b3603de1be
   mpAppSecret: 8ac79aa7d8d05d7f1b4b991616aa56c8
+  mchId: 158613
+  mchKey: cas65c03
+  KeyPath: /cas/asca
+#异步回调
+  notifyUrl: http://lianxi.nat300.top/sell/pay/notify

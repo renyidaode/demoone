@@ -18,6 +18,8 @@ public enum ResultEnum{
     CART_EMPTY(18, "购物车不能为空"),
 
     ORDER_OWNER_ERROR(19,"该订单不属于当前用户"),
+
+    WECHA_MP_ERROR(20,"微信公众号方面错误"),
     ;
 
     private Integer code;

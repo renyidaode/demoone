@@ -9,25 +9,29 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+/**
+ * Created by 廖师兄
+ * 2017-07-03 01:25
+ */
 @Component
 @Configuration
-public class WechatMapConfig {
+public class WechatMpConfig {
 
     @Autowired
-    private WechatAccountConfig wechatAccountConfig;
+    private WechatAccountConfig accountConfig;
 
     @Bean
-    public WxMpService wxMpService(){
+    public WxMpService wxMpService() {
         WxMpService wxMpService = new WxMpServiceImpl();
         wxMpService.setWxMpConfigStorage(wxMpConfigStorage());
         return wxMpService;
     }
 
     @Bean
-    public WxMpConfigStorage wxMpConfigStorage(){
+    public WxMpConfigStorage wxMpConfigStorage() {
         WxMpInMemoryConfigStorage wxMpConfigStorage = new WxMpInMemoryConfigStorage();
-        wxMpConfigStorage.setAppId(wechatAccountConfig.getMpAppId());
-        wxMpConfigStorage.setSecret(wechatAccountConfig.getMpAppSecret());
+        wxMpConfigStorage.setAppId(accountConfig.getMpAppId());
+        wxMpConfigStorage.setSecret(accountConfig.getMpAppSecret());
         return wxMpConfigStorage;
     }
 }
