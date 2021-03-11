@@ -5,6 +5,9 @@ spring:
     password: 1234
     url: jdbc:mysql://localhost:3306/my?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
   jpa.show-sql: true
+#  redis:
+#    host: 192.16
+#    port: 6379
   jackson:
     default-property-inclusion: non_null
 #jpa.show-sql: true 在控制台打印数据库
@@ -20,8 +23,15 @@ server:
 wechat:
   mpAppId: wx795cc0b3603de1be
   mpAppSecret: 8ac79aa7d8d05d7f1b4b991616aa56c8
+  openAppId:
+  openAppSecret:
   mchId: 158613
   mchKey: cas65c03
   KeyPath: /cas/asca
   #异步回调
   notifyUrl: http://lianxi.nat300.top/sell/pay/notify
+
+projecturl:
+  wechatMpAuthorize: lianxi.nat300.top
+  wechatOpenAuthorize: lianxi.nat300.top
+  sell:

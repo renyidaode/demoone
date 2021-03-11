@@ -22,6 +22,7 @@ public enum ResultEnum{
     WECHA_MP_ERROR(20,"微信公众号方面错误"),
     WXPAY_NOTIFY_MONEY_VERIFY_ERROR(21,"微信支付异步通知金额校验不通过"),
     PRODUCT_STATUS_ERROR(22, "商品状态不正确"),
+    LOGIN_FAIL(25, "登录失败，登录信息不正确"),
     ;
 
     private Integer code;

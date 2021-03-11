@@ -15,6 +15,7 @@ import com.newyhree.demoone.repository.OrderMasterRepository;
 import com.newyhree.demoone.service.OrderService;
 import com.newyhree.demoone.service.PayService;
 import com.newyhree.demoone.service.ProductService;
+import com.newyhree.demoone.service.WebSocket;
 import com.newyhree.demoone.utils.KeyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -46,6 +47,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    private WebSocket webSocket;
 
     @Override
     @Transactional
@@ -95,6 +99,9 @@ public class OrderServiceImpl implements OrderService {
         ).collect(Collectors.toList());
 
         productService.decreaseStock(cartDTOList);
+
+        //发送消息
+        webSocket.sendMessage(orderDTO.getOrderId());
 
         return orderDTO;
     }
