@@ -17,7 +17,7 @@ public class CategoryImpl implements CategoryService {
 
 
     @Override
-    public ProductCategory findOne(Integer categoryId) {
+    public ProductCategory getOne(Integer categoryId) {
         return categoryService.getOne(categoryId);
     }
 

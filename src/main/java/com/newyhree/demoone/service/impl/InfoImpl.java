@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InfoImpl implements ProductService {
@@ -77,5 +78,31 @@ public class InfoImpl implements ProductService {
 //            productInfo.setProductStock(result);
 //            repository.save(productInfo);
 //        }
+    }
+
+    @Override
+    public ProductInfo onSale(String productId) throws SellException {
+        ProductInfo productInfo = repository.findByProductId(productId);
+        if (productInfo == null){
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if (productInfo.getProductStatus() == 1){
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+        productInfo.setProductStatus(1);
+        return repository.save(productInfo);
+    }
+
+    @Override
+    public ProductInfo offSale(String productId) throws SellException {
+        ProductInfo productInfo = repository.findByProductId(productId);
+        if (productInfo == null){
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if (productInfo.getProductStatus() == 0){
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+        productInfo.setProductStatus(0);
+        return repository.save(productInfo);
     }
 }

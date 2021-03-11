@@ -23,5 +23,5 @@ wechat:
   mchId: 158613
   mchKey: cas65c03
   KeyPath: /cas/asca
-#异步回调
+  #异步回调
   notifyUrl: http://lianxi.nat300.top/sell/pay/notify

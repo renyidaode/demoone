@@ -2,8 +2,11 @@ package com.newyhree.demoone.service;
 
 import com.newyhree.demoone.dto.OrderDTO;
 import com.newyhree.demoone.exception.SellException;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 public interface OrderService {
 
@@ -24,5 +27,8 @@ public interface OrderService {
 
     //完结订单
     OrderDTO finish(OrderDTO orderDTO) throws SellException;
+
+    //查询订单列表
+    Page<OrderDTO> findList(Pageable pageable);
 
 }

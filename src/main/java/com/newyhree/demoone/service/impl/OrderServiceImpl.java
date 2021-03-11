@@ -13,6 +13,7 @@ import com.newyhree.demoone.exception.SellException;
 import com.newyhree.demoone.repository.OrderDetailRepostitory;
 import com.newyhree.demoone.repository.OrderMasterRepository;
 import com.newyhree.demoone.service.OrderService;
+import com.newyhree.demoone.service.PayService;
 import com.newyhree.demoone.service.ProductService;
 import com.newyhree.demoone.utils.KeyUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +43,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+
+    @Autowired
+    private PayService payService;
 
     @Override
     @Transactional
@@ -154,7 +158,7 @@ public class OrderServiceImpl implements OrderService {
         //如果支付，用户退款
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
             //TODO
-
+            payService.refund(orderDTO);
         }
         return orderDTO;
     }
@@ -209,5 +213,15 @@ public class OrderServiceImpl implements OrderService {
             throw new SellException(ResultEnum.ORDER_DETAIL_EMPTY);
         }
         return orderDTO;
+    }
+
+    @Override
+    public Page<OrderDTO> findList(Pageable pageable) {
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
+
+        List<OrderDTO> orderDTOList = OrderMater20rderDTOConverter.convert(orderMasterPage.getContent());
+        //返回pageable和总数
+        return new PageImpl<OrderDTO>(orderDTOList, pageable, orderMasterPage.getTotalElements());
+
     }
 }

@@ -26,4 +26,10 @@ public interface ProductService {
 
     //减库存
     void decreaseStock(List<CartDTO> cartDTOList) throws SellException;
+
+    //上架
+    ProductInfo onSale(String productId) throws SellException;
+
+    //下架
+    ProductInfo offSale(String productId) throws SellException;
 }

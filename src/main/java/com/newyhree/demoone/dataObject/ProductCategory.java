@@ -1,16 +1,20 @@
 package com.newyhree.demoone.dataObject;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 
 @Data
 @DynamicUpdate
 @Entity
-public class ProductCategory{
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+public class ProductCategory implements Serializable {
 
     //类目Id
     @Id
@@ -23,10 +27,14 @@ public class ProductCategory{
     //类目编号
     private Integer categoryType;
 
-    public ProductCategory(){}
+    private Date createTime;
 
-    public ProductCategory(String categoryName, Integer categoryType) {
-        this.categoryName = categoryName;
-        this.categoryType = categoryType;
-    }
+    private Date updateTime;
+
+//    public ProductCategory(){}
+//
+//    public ProductCategory(String categoryName, Integer categoryType) {
+//        this.categoryName = categoryName;
+//        this.categoryType = categoryType;
+//    }
 }

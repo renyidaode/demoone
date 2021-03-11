@@ -9,6 +9,7 @@ import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URLEncoder;
 
-@RestController
+@Controller
 @RequestMapping("/wechat")
 @Slf4j
 public class WechatController {
@@ -32,6 +33,7 @@ public class WechatController {
         //2. 调用方法
         String url = "http://lianxi.nat300.top/sell/wechat/userInfo";
         String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAUTH2_SCOPE_USER_INFO, URLEncoder.encode(returnUrl));
+        log.info("【微信网页授权获取code】redirectUrl ",redirectUrl);
         return "redirect:" + redirectUrl;
     }
 
